@@ -7,11 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.DispatcherType;
 
-/**
- * struts 2 configuration
- *
- * @author linux_china
- */
+
 @Configuration
 public class Struts2Configuration {
     @Bean
