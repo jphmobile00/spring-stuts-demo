@@ -1,0 +1,73 @@
+https://searchendeca.blogspot.com/2021/06/deploying-springboot-struts-2.html
+
+Deploying SpringBoot Struts 2 Integration Project in Docker
+ Syed Ghouse Habib    June 17, 2021
+ Follow my previous post and create the sample spring struts integration project from here.
+https://github.com/Syed-SearchEndeca/spring-stuts-demo
+
+
+Create a Docker File: Dockerfile
+
+
+
+FROM tomcat:latest
+
+ADD target/SpringStrutsDemo-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/
+
+EXPOSE 8080
+
+CMD ["catalina.sh","run"]
+
+
+
+Build and tag the Docker File:spring-strutsdemo
+
+
+
+C:\Users\Syed\Spring-workspace\SpringStrutsDemo>docker build -t spring-strutsdemo .
+
+Sending build context to Docker daemon  58.75MB
+
+Step 1/4 : FROM tomcat:latest
+
+ ---> 5505f7218e4d
+
+Step 2/4 : ADD target/SpringStrutsDemo-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/
+
+ ---> a30a842ce761
+
+Step 3/4 : EXPOSE 8080
+
+ ---> Running in 35d616d2803f
+
+Removing intermediate container 35d616d2803f
+
+ ---> 2c848691227a
+
+Step 4/4 : CMD ["catalina.sh","run"]
+
+ ---> Running in 270c9c8d4b5d
+
+Removing intermediate container 270c9c8d4b5d
+
+ ---> f7b915b47c1f
+
+Successfully built f7b915b47c1f
+
+Successfully tagged spring-strutsdemo:latest
+
+
+
+Run the docker image from the tag 
+
+
+
+docker run -p 8080:8080 spring-strutsdemo
+
+This will start in 8080 port. In case if it is not started well there could be an issue with the java version used in the docker or the project is not properly generated and war is invalid.
+
+Access it using 
+
+http://localhost:8080/SpringStrutsDemo-0.0.1-SNAPSHOT/message.action
+
+where SpringStrutsDemo-0.0.1-SNAPSHOT is the context. 
